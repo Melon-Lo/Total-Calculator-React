@@ -1,6 +1,11 @@
 import styled from 'styled-components'
 
+import '../components/common/style.css'
+
 import { nanoid } from 'nanoid'
+
+// import img
+import cross from 'assets/icons/cross.svg'
 
 // import hook
 import { useEffect, useContext } from 'react'
@@ -58,7 +63,7 @@ const ItemPiece = styled.div`
 export default function ItemBox() {
   const { currentItems } = useContext(FunctionsContext)
 
-  const titleData = ['品項', '價格', '數量', '小計']
+  const titleData = ['品項', '價格', '數量', '小計', '刪除']
 
   const titles = titleData.map(title => (
     <Title key={nanoid()}>
@@ -72,6 +77,9 @@ export default function ItemBox() {
       <ItemPiece>{'$' + item.price}</ItemPiece>
       <ItemPiece>{'x' + item.amount}</ItemPiece>
       <ItemPiece>{'$' + item.price * item.amount}</ItemPiece>
+      <ItemPiece>
+        <img className="icon" src={cross} alt="cross" />
+      </ItemPiece>
     </Item>
   ))
 

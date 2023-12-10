@@ -15,16 +15,9 @@ const Container = styled.div`
 
 const AddItem = styled.button``
 
-const EditItem = styled.button``
-
-const DeleteItem = styled.button``
-
 export default function EditBox() {
   const { setShowModal } = useContext(ModalContext)
-
   const addContent = '增加品項'
-  const editContent = '修改'
-  const deleteContent = '刪除'
 
   return(
     <Container>
@@ -33,12 +26,6 @@ export default function EditBox() {
       >
         {addContent}
       </AddItem>
-      <EditItem>
-        {editContent}
-      </EditItem>
-      <DeleteItem>
-        {deleteContent}
-      </DeleteItem>
     </Container>
   )
 }

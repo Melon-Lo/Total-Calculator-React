@@ -68,11 +68,10 @@ const AddButton = styled.button`
 
 const CrossIcon = styled.div`
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 15px;
+  right: 15px;
   width: 15px;
   height: 15px;
-  cursor: pointer;
 `
 
 export default function ModalBox() {
