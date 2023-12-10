@@ -5,6 +5,7 @@ import cross from 'assets/icons/cross.svg'
 // import hook
 import { useContext } from 'react'
 import { ModalContext } from 'contexts/ModalContext'
+import { FunctionsContext } from 'contexts/FunctionsContext'
 
 // when showing modal, there's gray background
 const GrayBg = styled.div`
@@ -23,7 +24,7 @@ const Container = styled.div`
   width: 80%;
   height: 200px;
   background: brown;
-  border-radius: 15px;
+  border-radius: 15px 15px 0 0;
   z-index: 999;
 `
 
@@ -33,22 +34,36 @@ const Title = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 1.4rem;
-
 `
 
 const AddSection = styled.div`
   background: gray;
   height: 50%;
+  padding: 20px 0;
   display: flex;
   justify-content: space-around;
   align-items: center;
 `
 
+const ButtonSection = styled.div`
+  height: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: purple;
+  border-radius: 15px;
+`
+
+const InputBox = styled.div`
+  width: 50%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
 const AddButton = styled.button`
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
+  height: 30px;
 `
 
 const CrossIcon = styled.div`
@@ -60,15 +75,18 @@ const CrossIcon = styled.div`
   cursor: pointer;
 `
 
-export default function ModalBox({ 
-  handleNameChange,
-  handlePriceChange, 
-  handleAddItem,
-}) {
+export default function ModalBox() {
+  const { inputNameValue, inputPriceValue, handleNameChange, handlePriceChange, handleAddItem } = useContext(FunctionsContext)
+
   const { setShowModal } = useContext(ModalContext)
 
   const title = '增加品項'
   const buttonContent = '增加'
+
+  const inputNameTitle = '品項名稱'
+  const inputNamePlaceholder = '10個字以內'
+  const inputPriceTitle = '價格'
+  const inputPricePlaceholder = '0-10000'
 
   return (
     <>
@@ -76,30 +94,44 @@ export default function ModalBox({
       <Container>
         <Title>{title}</Title>
         <AddSection>
-          <input 
-            id="add-item-name-input"
-            className="input" 
-            type="text" 
-            placeholder="品項名稱" 
-            onChange={(e) => {
-              handleNameChange?.(e.target.value)
-            }}
-          />
-          <input 
-            id="add-item-price-input"
-            className="input" 
-            type="number" 
-            placeholder="價格"
-            onChange={(e) => {
-              handlePriceChange?.(e.target.value)
-            }}
-          />
-        </AddSection>
-        <AddButton
-          onClick={() => handleAddItem?.()}
-        >
-          {buttonContent}
-        </AddButton>
+          <InputBox>
+            <div className="inputTitle">
+              {inputNameTitle}
+            </div>
+            <input 
+              id="add-item-name-input"
+              className="input" 
+              type="text" 
+              value={inputNameValue}
+              placeholder={inputNamePlaceholder}
+              onChange={(e) => {
+                handleNameChange?.(e.target.value)
+              }}
+            />
+          </InputBox>
+          <InputBox>
+            <div className="inputTitle">
+              {inputPriceTitle}
+            </div>
+            <input 
+              id="add-item-price-input"
+              className="input" 
+              type="number" 
+              value={inputPriceValue}
+              placeholder={inputPricePlaceholder}
+              onChange={(e) => {
+                handlePriceChange?.(e.target.value)
+              }}
+            />
+          </InputBox>
+        </AddSection>  
+        <ButtonSection>
+          <AddButton
+            onClick={() => handleAddItem?.()}
+          >
+            {buttonContent}
+          </AddButton>
+        </ButtonSection>
         <CrossIcon
           onClick={() => setShowModal(false)}
         >

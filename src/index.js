@@ -5,12 +5,15 @@ import App from './App';
 
 // import contexts
 import ModalContextProvider from 'contexts/ModalContext';
+import FunctionsContextProvider from 'contexts/FunctionsContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <ModalContextProvider>
-      <App />
+      <FunctionsContextProvider>
+        <App />
+      </FunctionsContextProvider>
     </ModalContextProvider>
   </React.StrictMode>
 );

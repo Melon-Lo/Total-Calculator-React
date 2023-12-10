@@ -22,7 +22,7 @@ const DeleteItem = styled.button``
 export default function EditBox() {
   const { setShowModal } = useContext(ModalContext)
 
-  const addContent = '增加'
+  const addContent = '增加品項'
   const editContent = '修改'
   const deleteContent = '刪除'
 

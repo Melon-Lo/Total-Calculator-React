@@ -2,6 +2,12 @@ import styled from 'styled-components'
 
 import { nanoid } from 'nanoid'
 
+// import hook
+import { useEffect, useContext } from 'react'
+
+// import contexts
+import { FunctionsContext } from 'contexts/FunctionsContext'
+
 const Container = styled.div`
   width: 100%;
   display: flex;
@@ -49,7 +55,9 @@ const ItemPiece = styled.div`
 `
 
 
-export default function ItemBox({ items }) {
+export default function ItemBox() {
+  const { currentItems } = useContext(FunctionsContext)
+
   const titleData = ['品項', '價格', '數量', '小計']
 
   const titles = titleData.map(title => (
@@ -58,7 +66,7 @@ export default function ItemBox({ items }) {
     </Title>
   ))
 
-  const itemsData = items.map(item => (
+  const itemsData = currentItems.map(item => (
     <Item key={nanoid()}>
       <ItemPiece>{item.name}</ItemPiece>
       <ItemPiece>{'$' + item.price}</ItemPiece>
