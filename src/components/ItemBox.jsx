@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import dummyData from 'data/dummyData'
+import { nanoid } from 'nanoid'
 
 const Container = styled.div`
   width: 100%;
@@ -48,15 +48,17 @@ const ItemPrice = styled.div``
 const ItemAmount = styled.div``
 const ItemTotal = styled.div``
 
-export default function ItemBox() {
-  const titleData = ['品名', '價格', '數量', '小計']
+export default function ItemBox({ items }) {
+  const titleData = ['品項', '價格', '數量', '小計']
 
   const titles = titleData.map(title => (
-    <Title>{title}</Title>
+    <Title key={nanoid()}>
+      {title}
+    </Title>
   ))
 
-  const items = dummyData.map(item => (
-    <Item>
+  const itemsData = items.map(item => (
+    <Item key={nanoid()}>
       <ItemName>{item.name}</ItemName>
       <ItemPrice>{'$' + item.price}</ItemPrice>
       <ItemAmount>{'x' + item.amount}</ItemAmount>
@@ -70,7 +72,7 @@ export default function ItemBox() {
         {titles}
       </TitleCollection>
       <ItemCollection>
-        {items}
+        {itemsData}
       </ItemCollection>
     </Container>
   )
