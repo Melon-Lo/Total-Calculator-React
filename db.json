@@ -1,23 +1,46 @@
 {
   "items": [
     {
+      "id": 1,
       "name": "牛排",
       "price": 130,
       "amount": 2
     },
     {
+      "id": 2,
       "name": "豬排",
       "price": 120,
       "amount": 1
     },
     {
+      "id": 3,
       "name": "雞排",
       "price": 110,
       "amount": 4
     },
     {
+      "id": 4,
       "name": "魚排",
       "price": 150,
       "amount": 7
+    },
+    {
+      "name": "fsadf",
+      "price": "123",
+      "amount": 0,
+      "id": 7
+    },
+    {
+      "name": "ccc",
+      "price": "123",
+      "amount": 0,
+      "id": 8
+    },
+    {
+      "name": "牛奶",
+      "price": "120",
+      "amount": 0,
+      "id": 9
     }
-]}
+  ]
+}

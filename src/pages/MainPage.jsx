@@ -11,7 +11,7 @@ import { useState, useEffect, useContext } from 'react'
 import { ModalContext } from 'contexts/ModalContext'
 
 // import api
-import { getItems } from 'api/items'
+import { getItems, createItem } from 'api/items'
 import ModalBox from 'components/ModalBox'
 
 const Container = styled.div`
@@ -23,9 +23,51 @@ const Container = styled.div`
 `
 
 export default function MainPage() {
+  const [inputNameValue, setInputNameValue] = useState('')
+  const [inputPriceValue, setInputPriceValue] = useState('')
   const [items, setItems] = useState([])
-  const { showModal } = useContext(ModalContext)
+  const { showModal, setShowModal } = useContext(ModalContext)
   const titleContent = '總價計算機'
+
+  const handleNameChange = (value) => {
+    setInputNameValue(value)
+  }
+
+  const handlePriceChange = (value) => {
+    setInputPriceValue(value)
+  }
+
+  const handleAddItem = async () => {
+    if(inputNameValue.length === 0 || inputPriceValue.length === 0) return
+
+    try {
+      const data = await createItem({
+        name: inputNameValue,
+        price: inputPriceValue,
+        amount: 0,
+      })
+
+      console.log(data)
+
+      setItems(prevItems => {
+        return [
+          ...prevItems,
+          {
+            id: data.id,
+            name: data.name,
+            price: data.price,
+            amount: data.amount,
+          }
+        ]
+      })
+
+      setInputNameValue('')
+      setInputPriceValue('')
+      setShowModal(false)
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   useEffect(() => {
     const getItemsAsync = async () => {
@@ -42,11 +84,23 @@ export default function MainPage() {
 
   return (
     <Container>
-      <TitleBox content={titleContent} />
-      <EditBox />
-      <ItemBox items={items} />
+      <TitleBox 
+        content={titleContent} 
+      />
+      <EditBox 
+      />
+      <ItemBox 
+        items={items} 
+      />
       <TotalBox />
-      { showModal && <ModalBox /> }
+
+      { showModal && 
+        <ModalBox 
+          handleNameChange={handleNameChange}
+          handlePriceChange={handlePriceChange}
+          handleAddItem={handleAddItem}
+        /> 
+      }
     </Container>
   )
 }

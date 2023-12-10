@@ -38,15 +38,16 @@ const Item = styled.div`
   height: 60px;
   margin-bottom: 30px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   background: yellow;
 `
 
-const ItemName = styled.div``
-const ItemPrice = styled.div``
-const ItemAmount = styled.div``
-const ItemTotal = styled.div``
+const ItemPiece = styled.div`
+  width: 25%;
+  text-align: center;
+`
+
 
 export default function ItemBox({ items }) {
   const titleData = ['品項', '價格', '數量', '小計']
@@ -59,10 +60,10 @@ export default function ItemBox({ items }) {
 
   const itemsData = items.map(item => (
     <Item key={nanoid()}>
-      <ItemName>{item.name}</ItemName>
-      <ItemPrice>{'$' + item.price}</ItemPrice>
-      <ItemAmount>{'x' + item.amount}</ItemAmount>
-      <ItemTotal>{'$' + item.price * item.amount}</ItemTotal>
+      <ItemPiece>{item.name}</ItemPiece>
+      <ItemPiece>{'$' + item.price}</ItemPiece>
+      <ItemPiece>{'x' + item.amount}</ItemPiece>
+      <ItemPiece>{'$' + item.price * item.amount}</ItemPiece>
     </Item>
   ))
 

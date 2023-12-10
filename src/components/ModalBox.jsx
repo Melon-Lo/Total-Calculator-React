@@ -60,7 +60,11 @@ const CrossIcon = styled.div`
   cursor: pointer;
 `
 
-export default function ModalBox() {
+export default function ModalBox({ 
+  handleNameChange,
+  handlePriceChange, 
+  handleAddItem,
+}) {
   const { setShowModal } = useContext(ModalContext)
 
   const title = '增加品項'
@@ -72,10 +76,30 @@ export default function ModalBox() {
       <Container>
         <Title>{title}</Title>
         <AddSection>
-          <input className="input" type="text" placeholder="品項名稱" />
-          <input className="input" type="text" placeholder="價格"/>
+          <input 
+            id="add-item-name-input"
+            className="input" 
+            type="text" 
+            placeholder="品項名稱" 
+            onChange={(e) => {
+              handleNameChange?.(e.target.value)
+            }}
+          />
+          <input 
+            id="add-item-price-input"
+            className="input" 
+            type="number" 
+            placeholder="價格"
+            onChange={(e) => {
+              handlePriceChange?.(e.target.value)
+            }}
+          />
         </AddSection>
-        <AddButton>{buttonContent}</AddButton>
+        <AddButton
+          onClick={() => handleAddItem?.()}
+        >
+          {buttonContent}
+        </AddButton>
         <CrossIcon
           onClick={() => setShowModal(false)}
         >

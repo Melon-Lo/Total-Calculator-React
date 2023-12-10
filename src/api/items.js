@@ -12,6 +12,19 @@ export const getItems = async () => {
 }
 
 // create items
+export const createItem = async (payload) => {
+  const { name, price, amount } = payload
+  try {
+    const res = await axios.post(`${baseUrl}/items`, {
+      name,
+      price,
+      amount,
+    })
+    return res.data
+  } catch (error) {
+    console.error('[Create item failed]: ', error)
+  }
+}
 
 // patch items
 
