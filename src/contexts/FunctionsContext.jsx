@@ -5,7 +5,7 @@ import { useState, useEffect, createContext, useContext } from "react";
 import Swal from 'sweetalert2'
 
 // import api
-import { getItems, createItem } from 'api/items'
+import { getItems, createItem, deleteItem } from 'api/items'
 
 // import context
 import { ModalContext } from "./ModalContext";
@@ -17,6 +17,17 @@ export default function FunctionsContextProvider({ children }) {
   const [inputPriceValue, setInputPriceValue] = useState('')
   const [currentItems, setCurrentItems] = useState([])
   const { setShowModal } = useContext(ModalContext)
+
+  ////////// get items
+  const getItemsAsync = async () => {
+    try {
+      const items = await getItems()
+      setCurrentItems(items.map(item => ({...item})))
+      console.log(currentItems)
+    } catch (error) {
+      console.error(error)
+    } 
+  }
 
   ////////// add new item
   // name: 0-10 words
@@ -88,12 +99,13 @@ export default function FunctionsContextProvider({ children }) {
     }
   }
 
-  // get items
-  const getItemsAsync = async () => {
+  ////////// delete item
+  const handleDelete = async ({ id }) => {
     try {
-      const items = await getItems()
-      setCurrentItems(items.map(item => ({...item})))
-      console.log(currentItems)
+      await deleteItem(id)
+      setCurrentItems(prevItems => {
+        return prevItems.filter(item => item.id !== id)
+      })
     } catch (error) {
       console.error(error)
     } 
@@ -115,6 +127,7 @@ export default function FunctionsContextProvider({ children }) {
         handleNameChange,
         handlePriceChange,
         handleAddItem,
+        handleDelete,
         getItemsAsync,
       }}
     >

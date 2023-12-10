@@ -61,7 +61,7 @@ const ItemPiece = styled.div`
 
 
 export default function ItemBox() {
-  const { currentItems } = useContext(FunctionsContext)
+  const { currentItems, handleDelete } = useContext(FunctionsContext)
 
   const titleData = ['品項', '價格', '數量', '小計', '刪除']
 
@@ -72,12 +72,14 @@ export default function ItemBox() {
   ))
 
   const itemsData = currentItems.map(item => (
-    <Item key={nanoid()}>
+    <Item key={item.id}>
       <ItemPiece>{item.name}</ItemPiece>
       <ItemPiece>{'$' + item.price}</ItemPiece>
       <ItemPiece>{'x' + item.amount}</ItemPiece>
       <ItemPiece>{'$' + item.price * item.amount}</ItemPiece>
-      <ItemPiece>
+      <ItemPiece
+        onClick={() => {handleDelete?.({ id: item.id })}}
+      >
         <img className="icon" src={cross} alt="cross" />
       </ItemPiece>
     </Item>

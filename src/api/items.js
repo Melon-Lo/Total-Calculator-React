@@ -29,3 +29,11 @@ export const createItem = async (payload) => {
 // patch items
 
 // delete items
+export const deleteItem = async (id) => {
+  try {
+    const res = await axios.delete(`${baseUrl}/items/${id}`)
+    return res.data
+  } catch (error) {
+    console.error('[Delete item failed]: ', error)
+  }
+}
