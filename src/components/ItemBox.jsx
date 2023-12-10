@@ -6,9 +6,11 @@ import { nanoid } from 'nanoid'
 
 // import img
 import cross from 'assets/icons/cross.svg'
+import up from 'assets/icons/up-arrow.svg'
+import down from 'assets/icons/down-arrow.svg'
 
 // import hook
-import { useEffect, useContext } from 'react'
+import { useContext } from 'react'
 
 // import contexts
 import { FunctionsContext } from 'contexts/FunctionsContext'
@@ -56,12 +58,21 @@ const Item = styled.div`
 
 const ItemPiece = styled.div`
   width: 25%;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
+const AmountChangeBox = styled.div`
+  margin-left: 20px; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
 
 export default function ItemBox() {
-  const { currentItems, handleDelete } = useContext(FunctionsContext)
+  const { currentItems, handleDelete, handleCalculation } = useContext(FunctionsContext)
 
   const titleData = ['品項', '價格', '數量', '小計', '刪除']
 
@@ -74,8 +85,28 @@ export default function ItemBox() {
   const itemsData = currentItems.map(item => (
     <Item key={item.id}>
       <ItemPiece>{item.name}</ItemPiece>
-      <ItemPiece>{'$' + item.price}</ItemPiece>
-      <ItemPiece>{'x' + item.amount}</ItemPiece>
+      <ItemPiece>{'$' + item.price} </ItemPiece>
+      <ItemPiece>
+        {'x' + item.amount}
+         <AmountChangeBox>
+          <img 
+            className="amount" 
+            src={up} 
+            alt="amount-plus" 
+            onClick={() => {
+              handleCalculation?.({ id: item.id }, 1)
+            }}
+          />
+          <img 
+            className="amount" 
+            src={down} 
+            alt="amount-minus" 
+            onClick={() => {
+              handleCalculation?.({ id: item.id }, -1)
+            }}
+          />
+        </AmountChangeBox>
+      </ItemPiece>
       <ItemPiece>{'$' + item.price * item.amount}</ItemPiece>
       <ItemPiece
         onClick={() => {handleDelete?.({ id: item.id })}}

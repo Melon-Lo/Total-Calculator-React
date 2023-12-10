@@ -27,6 +27,19 @@ export const createItem = async (payload) => {
 }
 
 // patch items
+export const patchItem = async (payload) => {
+  const { id, name, price, amount } = payload
+  try {
+    const res = await axios.patch(`${baseUrl}/items/${id}`, {
+      name,
+      price,
+      amount
+    })
+    return res.data
+  } catch (error) {
+    console.error('[Patch item failed]: ', error)
+  }
+}
 
 // delete items
 export const deleteItem = async (id) => {
