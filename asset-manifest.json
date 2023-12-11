@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/Total-Calculator/static/css/main.000295ef.css",
+    "main.js": "/Total-Calculator/static/js/main.a9c2b82d.js",
+    "static/media/up-arrow.svg": "/Total-Calculator/static/media/up-arrow.4c6abf93e5f81056680a18aefc73d87e.svg",
+    "static/media/down-arrow.svg": "/Total-Calculator/static/media/down-arrow.1edfab86f389055c97b80ec14e52f85c.svg",
+    "index.html": "/Total-Calculator/index.html",
+    "static/media/cross.svg": "/Total-Calculator/static/media/cross.a6b9ffc5deeeb58064e76e9c4fe167d5.svg",
+    "main.000295ef.css.map": "/Total-Calculator/static/css/main.000295ef.css.map",
+    "main.a9c2b82d.js.map": "/Total-Calculator/static/js/main.a9c2b82d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.000295ef.css",
+    "static/js/main.a9c2b82d.js"
+  ]
+}
