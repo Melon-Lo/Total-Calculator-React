@@ -1,12 +1,6 @@
 {
   "items": [
     {
-      "name": "123123",
-      "price": 10000,
-      "amount": 1,
-      "id": 1
-    },
-    {
       "name": "zxcvv",
       "price": 234,
       "amount": 1,
@@ -35,6 +29,12 @@
       "price": 111,
       "amount": 1,
       "id": 6
+    },
+    {
+      "name": "wer",
+      "price": 112,
+      "amount": 1,
+      "id": 7
     }
   ]
 }
