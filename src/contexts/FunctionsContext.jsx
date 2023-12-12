@@ -17,6 +17,9 @@ export default function FunctionsContextProvider({ children }) {
   const [inputPriceValue, setInputPriceValue] = useState('')
   const [currentItems, setCurrentItems] = useState([])
   const { setShowModal } = useContext(ModalContext)
+  const total = currentItems.reduce((acc, curr) => {
+    return acc + curr.price * curr.amount
+  }, 0)
 
   ////////// get items
   const getItemsAsync = async () => {
@@ -32,7 +35,7 @@ export default function FunctionsContextProvider({ children }) {
   // name: 0-10 words
   const handleNameChange = (value) => {
     if(value.length > 10) return
-    setInputNameValue(value)
+    setInputNameValue(value.trim())
   }
 
   // price: 0-10000
@@ -172,6 +175,7 @@ export default function FunctionsContextProvider({ children }) {
         handleDelete,
         handleCalculation,
         getItemsAsync,
+        total,
       }}
     >
       {children}

@@ -48,7 +48,7 @@ const ItemCollection = styled.div`
 
 const Item = styled.div`
   width: 85%;
-  height: 60px;
+  height: 80px;
   margin-bottom: 30px;
   display: flex;
   justify-content: space-between;
@@ -61,6 +61,8 @@ const ItemPiece = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 1.2rem;
+  text-align: center;
 `
 
 const AmountChangeBox = styled.div`
