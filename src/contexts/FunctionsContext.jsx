@@ -8,6 +8,7 @@ import Swal from 'sweetalert2'
 import { getItems, createItem, patchItem, deleteItem } from 'api/items'
 
 // import context
+import { ModeContext } from "./ModeContxt";
 import { ModalContext } from "./ModalContext";
 
 export const FunctionsContext = createContext()
